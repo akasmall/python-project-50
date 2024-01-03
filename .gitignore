@@ -7,3 +7,6 @@ dist/
 coverage.xml
 .pytest_cache/
 *.code-workspace
+.pylintrc
+.codeclimate.yml
+dist/

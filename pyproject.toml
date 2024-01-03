@@ -4,6 +4,9 @@ version = "0.1.0"
 description = ""
 authors = ["akasmall <aka_sm@ro.ru>"]
 readme = "README.md"
+packages = [
+  { include = "hexlet_python_package" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -12,3 +15,6 @@ python = "^3.10"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+gendiff = "hexlet_python_package.scripts.gendiff:main"
