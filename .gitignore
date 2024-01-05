@@ -10,3 +10,4 @@ coverage.xml
 .pylintrc
 .codeclimate.yml
 dist/
+.vscode/
