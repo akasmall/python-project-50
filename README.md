@@ -1,9 +1,10 @@
 <a id = "anchor"></a>
-# Вычислитель отличий
+# Вычислитель отличий – программа, которая определяет разницу между двумя структурами данных.
 
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/akasmall/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/akasmall/python-project-50/actions)
-<a href="https://codeclimate.com/github/akasmall/python-project-50/maintainability"><img src="https://api.codeclimate.com/v1/badges/a83c753bdcdabd8080cb/maintainability" /></a> <a href="https://codeclimate.com/github/akasmall/python-project-50/test_coverage"><img src="https://api.codeclimate.com/v1/badges/a83c753bdcdabd8080cb/test_coverage" /></a>
+[![Maintainability](https://api.codeclimate.com/v1/badges/e87f520bf3e5d384a34f/maintainability)](https://codeclimate.com/github/akasmall/python-project-50/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/e87f520bf3e5d384a34f/test_coverage)](https://codeclimate.com/github/akasmall/python-project-50/test_coverage)
 
 ## Обзор
 Проект создан в целях получения практического опыта разработки на языке Python на курсе компании __Хекслет__.
