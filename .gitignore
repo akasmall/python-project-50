@@ -12,3 +12,4 @@ coverage.xml
 dist/
 .vscode/
 trash/
+pytest.ini

@@ -5,38 +5,29 @@ import os
 import sys
 
 
+def gen_string(dict1, dict2, key_):
+    result_str = ""
+    if key_ in dict1 and key_ not in dict2:
+        result_str = f"  - {key_}: {dict1[key_]}\n"
+        return result_str
+    if key_ in dict2 and key_ not in dict1:
+        result_str = f"  + {key_}: {dict2[key_]}\n"
+        return result_str
+    if key_ in dict1 and key_ in dict2 and dict1[key_] == dict2[key_]:
+        result_str = f"    {key_}: {dict1[key_]}\n"
+        return result_str
+    result_str = f"  - {key_}: {dict1[key_]}\n  + {key_}: {dict2[key_]}\n"
+    return result_str
+
+
 def compare_dict(dict1, dict2):
-    dict_diff = {
-        key_: (dict1[key_], "", "-") for key_ in dict1 if key_ not in dict2
-    }
-    dict_diff.update({
-        key_: (dict2[key_], "", "+") for key_ in dict2 if key_ not in dict1
-    })
-    for key_ in dict1:
-        if key_ in dict2 and dict1[key_] == dict2[key_]:
-            dict_diff.update({key_: (dict1[key_], "", None)})
-            continue
-        elif key_ not in dict2:
-            continue
-        else:
-            dict_diff.update({key_: (dict1[key_], dict2[key_], "$")})
-    return dict(sorted(dict_diff.items()))
+    keys_union = sorted(set(dict1.keys()) | set(dict2.keys()))
+    res = "{\n"
+    for i in keys_union:
+        res += gen_string(dict1, dict2, i)
 
-
-def print_dict(dict_diff_):
-    print("{")
-    for key_, value_ in dict_diff_.items():
-
-        if value_[2] == "-":
-            print(f"  - {key_}: {value_[0]}")
-        elif value_[2] == "+":
-            print(f"  + {key_}: {value_[0]}")
-        elif value_[2] == "$":
-            print(f"  - {key_}: {value_[0]}")
-            print(f"  + {key_}: {value_[1]}")
-        else:
-            print(f"    {key_}: {value_[0]}")
-    print("}")
+    print(res + "}")
+    return res
 
 
 def generate_diff(file1, file2):
@@ -47,7 +38,7 @@ def generate_diff(file1, file2):
         file1 = json.load(f1)
         file2 = json.load(f2)
     dict_diff = compare_dict(file1, file2)
-    print_dict(dict_diff)
+    return dict_diff
 
 
 def main():
@@ -60,7 +51,8 @@ def main():
     parser.parse_args()
 
     file_args = sys.argv
-    full_path = os.getcwd()
+    # full_path = os.getcwd()
+    full_path = os.path.dirname(file_args[0])
     file1 = f"{full_path}/{file_args[1]}"
     file2 = f"{full_path}/{file_args[2]}"
     generate_diff(file1, file2)
@@ -68,3 +60,17 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# if i in dict1 and i not in dict2:
+#     res += f"  - {i}: {dict1[i]}\n"
+#     continue
+# elif i in dict2 and i not in dict1:
+#     res += f"  + {i}: {dict2[i]}\n"
+#     continue
+# # if  i in dict1 and i in dict2:
+# if i in dict1 and i in dict2 and dict1[i] == dict2[i]:
+#     res += f"    {i}: {dict1[i]}\n"
+#     continue
+# else:
+#     res += f"  - {i}: {dict1[i]}\n"
+#     res += f"  + {i}: {dict2[i]}\n"
