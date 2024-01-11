@@ -25,8 +25,8 @@ def compare_dict(dict1, dict2):
     res = "{\n"
     for i in keys_union:
         res += gen_string(dict1, dict2, i)
-
-    print(res + "}")
+    res += "}"
+    # print(res)
     return res
 
 
@@ -51,7 +51,6 @@ def main():
     parser.parse_args()
 
     file_args = sys.argv
-    # full_path = os.getcwd()
     full_path = os.path.dirname(file_args[0])
     file1 = f"{full_path}/{file_args[1]}"
     file2 = f"{full_path}/{file_args[2]}"
