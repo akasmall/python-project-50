@@ -1,8 +1,10 @@
 #!/usr/bin/env python3.10
-import argparse
-import json
 import os
 import sys
+import argparse
+import json
+import yaml
+from yaml.loader import SafeLoader
 
 
 def gen_string(dict1, dict2, key_):
@@ -35,8 +37,15 @@ def generate_diff(file1, file2):
         open(file1, "r", encoding="utf-8") as f1,
         open(file2, "r", encoding="utf-8") as f2,
     ):
-        file1 = json.load(f1)
-        file2 = json.load(f2)
+        if os.path.splitext(file1)[1] == "json":
+            file1 = json.load(f1)
+            file2 = json.load(f2)
+        else:
+            # file1 = yaml.load(f1, Loader=yaml.SafeLoader)
+            # file2 = yaml.load(f2, Loader=yaml.SafeLoader)
+            file1 = yaml.safe_load(f1)
+            file2 = yaml.safe_load(f2)
+
     dict_diff = compare_dict(file1, file2)
     return dict_diff
 

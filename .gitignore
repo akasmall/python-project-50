@@ -13,3 +13,4 @@ dist/
 .vscode/
 trash/
 pytest.ini
+.coveragerc
