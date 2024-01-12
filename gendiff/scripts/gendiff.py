@@ -4,7 +4,7 @@ import sys
 import argparse
 import json
 import yaml
-from yaml.loader import SafeLoader
+# from yaml.loader import SafeLoader
 
 
 def gen_string(dict1, dict2, key_):
@@ -37,16 +37,19 @@ def generate_diff(file1, file2):
         open(file1, "r", encoding="utf-8") as f1,
         open(file2, "r", encoding="utf-8") as f2,
     ):
-        if os.path.splitext(file1)[1] == "json":
-            file1 = json.load(f1)
-            file2 = json.load(f2)
+        type_file1 = os.path.splitext(file1)[1]
+        type_file2 = os.path.splitext(file2)[1]
+        if type_file1 == ".json" and type_file2 == ".json":
+            file1_txt = json.load(f1)
+            file2_txt = json.load(f2)
+        elif type_file1 == ".yml" and type_file2 == ".yml":
+            # yaml.
+            file1_txt = yaml.safe_load(f1)
+            file2_txt = yaml.safe_load(f2)
         else:
-            # file1 = yaml.load(f1, Loader=yaml.SafeLoader)
-            # file2 = yaml.load(f2, Loader=yaml.SafeLoader)
-            file1 = yaml.safe_load(f1)
-            file2 = yaml.safe_load(f2)
+            return False
 
-    dict_diff = compare_dict(file1, file2)
+    dict_diff = compare_dict(file1_txt, file2_txt)
     return dict_diff
 
 
@@ -82,3 +85,6 @@ if __name__ == '__main__':
 # else:
 #     res += f"  - {i}: {dict1[i]}\n"
 #     res += f"  + {i}: {dict2[i]}\n"
+# timeout: 20
+# verbose: True
+# host: "hexlet.io"

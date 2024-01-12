@@ -27,4 +27,5 @@ def test_gendiff(file1, file2, file3):
         open(file3, "r", encoding="utf-8") as f3,
     ):
         file3 = f3.read()
-    assert generate_diff(file1, file2) == file3
+    res = generate_diff(file1, file2)
+    assert res == file3
