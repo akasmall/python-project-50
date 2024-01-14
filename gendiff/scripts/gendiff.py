@@ -32,6 +32,22 @@ def compare_dict(dict1, dict2):
     return res
 
 
+def format_values_dict(file1_txt, file2_txt):
+    file1_txt_ = dict()
+    for key_, value_ in file1_txt.items():
+        new_value_ = value_
+        if isinstance(value_, bool):
+            new_value_ = str(value_).lower()
+        file1_txt_[key_] = new_value_
+    file2_txt_ = dict()
+    for key_, value_ in file2_txt.items():
+        new_value_ = value_
+        if isinstance(value_, bool):
+            new_value_ = str(value_).lower()
+        file2_txt_[key_] = new_value_
+    return file1_txt_, file2_txt_
+
+
 def generate_diff(file1, file2):
     with (
         open(file1, "r", encoding="utf-8") as f1,
@@ -43,13 +59,13 @@ def generate_diff(file1, file2):
             file1_txt = json.load(f1)
             file2_txt = json.load(f2)
         elif type_file1 == ".yml" and type_file2 == ".yml":
-            # yaml.
             file1_txt = yaml.safe_load(f1)
             file2_txt = yaml.safe_load(f2)
         else:
             return False
-
-    dict_diff = compare_dict(file1_txt, file2_txt)
+    result_format = format_values_dict(file1_txt, file2_txt)
+    # dict_diff = compare_dict(file1_txt, file2_txt)
+    dict_diff = compare_dict(result_format[0], result_format[1])
     return dict_diff
 
 
