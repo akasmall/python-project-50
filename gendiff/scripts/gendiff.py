@@ -28,24 +28,18 @@ def compare_dict(dict1, dict2):
     for i in keys_union:
         res += gen_string(dict1, dict2, i)
     res += "}"
-    # print(res)
+    print(res)
     return res
 
 
-def format_values_dict(file1_txt, file2_txt):
-    file1_txt_ = dict()
-    for key_, value_ in file1_txt.items():
+def format_values_dict(file_txt):
+    new_file_txt = dict()
+    for key_, value_ in file_txt.items():
         new_value_ = value_
         if isinstance(value_, bool):
             new_value_ = str(value_).lower()
-        file1_txt_[key_] = new_value_
-    file2_txt_ = dict()
-    for key_, value_ in file2_txt.items():
-        new_value_ = value_
-        if isinstance(value_, bool):
-            new_value_ = str(value_).lower()
-        file2_txt_[key_] = new_value_
-    return file1_txt_, file2_txt_
+        new_file_txt[key_] = new_value_
+    return new_file_txt
 
 
 def generate_diff(file1, file2):
@@ -63,9 +57,10 @@ def generate_diff(file1, file2):
             file2_txt = yaml.safe_load(f2)
         else:
             return False
-    result_format = format_values_dict(file1_txt, file2_txt)
+    format_file1_txt = format_values_dict(file1_txt)
+    format_file2_txt = format_values_dict(file2_txt)
     # dict_diff = compare_dict(file1_txt, file2_txt)
-    dict_diff = compare_dict(result_format[0], result_format[1])
+    dict_diff = compare_dict(format_file1_txt, format_file2_txt)
     return dict_diff
 
 
