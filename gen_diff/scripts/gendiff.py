@@ -52,7 +52,8 @@ def generate_diff(file1, file2):
             file1_txt = json.load(f1)
             file2_txt = json.load(f2)
             # file2_txt = json.dumps(json.load(f2), indent=2)
-        elif type_file1 == ".yml" and type_file2 == ".yml":
+        elif (type_file1 == ".yml" and type_file2 == ".yml") or \
+                (type_file1 == ".yaml" and type_file2 == ".yaml"):
             file1_txt = yaml.safe_load(f1)
             file2_txt = yaml.safe_load(f2)
         else:
