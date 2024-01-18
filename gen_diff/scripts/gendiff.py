@@ -4,7 +4,7 @@ import sys
 import argparse
 import json
 import yaml
-from gendiff.parser import format_values_dict, compare_dict
+from gen_diff.parser import format_values_dict, compare_dict
 
 # def build_differ(dict1, dict2, key_):
 #     result_str = ""
@@ -51,6 +51,7 @@ def generate_diff(file1, file2):
         if type_file1 == ".json" and type_file2 == ".json":
             file1_txt = json.load(f1)
             file2_txt = json.load(f2)
+            # file2_txt = json.dumps(json.load(f2), indent=2)
         elif type_file1 == ".yml" and type_file2 == ".yml":
             file1_txt = yaml.safe_load(f1)
             file2_txt = yaml.safe_load(f2)
@@ -72,9 +73,14 @@ def main():
     parser.parse_args()
 
     file_args = sys.argv
-    full_path = os.path.dirname(file_args[0])
-    file1 = f"{full_path}/{file_args[1]}"
-    file2 = f"{full_path}/{file_args[2]}"
+    # full_path = os.path.dirname(file_args[0])
+    # print(full_path)
+    file1 = file_args[1]
+    # file1 = f"{full_path}/{file_args[1]}"
+    # print(file1)
+    file2 = file_args[2]
+    # file2 = f"{full_path}/{file_args[2]}"
+    # print(file2)
     generate_diff(file1, file2)
 
 
