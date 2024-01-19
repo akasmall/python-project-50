@@ -2,7 +2,7 @@
 import os
 import pytest
 # import yaml
-from gen_diff.scripts.gendiff import generate_diff
+from gendiff.scripts.gendiff import generate_diff
 
 
 # def get
