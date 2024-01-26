@@ -1,4 +1,4 @@
-def build_differ(dict1, dict2, key_):
+def build_diff(dict1, dict2, key_):
     result_str = ""
     if key_ in dict1 and key_ not in dict2:
         result_str = f"  - {key_}: {dict1[key_]}\n"
@@ -17,17 +17,24 @@ def compare_dict(dict1, dict2):
     keys_union = sorted(set(dict1.keys()) | set(dict2.keys()))
     res = "{\n"
     for i in keys_union:
-        res += build_differ(dict1, dict2, i)
+        res += build_diff(dict1, dict2, i)
     res += "}"
     print(res)
     return res
 
 
-def format_values_dict(file_txt):
+def format_bool_dict(data_dict):
     new_file_txt = dict()
-    for key_, value_ in file_txt.items():
+    for key_, value_ in data_dict.items():
         new_value_ = value_
         if isinstance(value_, bool):
             new_value_ = str(value_).lower()
         new_file_txt[key_] = new_value_
     return new_file_txt
+
+
+def parser_data(data1, data2):
+    format_data1 = format_bool_dict(data1)
+    format_data2 = format_bool_dict(data2)
+    dict_diff = compare_dict(format_data1, format_data2)
+    return dict_diff
