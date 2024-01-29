@@ -1,6 +1,6 @@
 # Сначала определите фикстуру в файле, например, в файле conftest.py:
 import pytest
-from gendiff.generate_diff import get_diff
+from gendiff.generate_diff import generate_diff
 
 
 @pytest.mark.parametrize(
@@ -23,5 +23,5 @@ def test_gendiff(file1, file2, file3):
         open(file3, "r", encoding="utf-8") as f3,
     ):
         file3 = f3.read()
-    res = get_diff(file1, file2)
+    res = generate_diff(file1, file2)
     assert res == file3
