@@ -1,19 +1,4 @@
-# def build_diff(dict1, dict2, key_):
-#     result_str = ""
-#     if key_ in dict1 and key_ not in dict2:
-#         result_str = f"  - {key_}: {dict1[key_]}\n"
-#         return result_str
-#     if key_ in dict2 and key_ not in dict1:
-#         result_str = f"  + {key_}: {dict2[key_]}\n"
-#         return result_str
-#     if key_ in dict1 and key_ in dict2 and dict1[key_] == dict2[key_]:
-#         result_str = f"    {key_}: {dict1[key_]}\n"
-#         return result_str
-#     result_str = f"  - {key_}: {dict1[key_]}\n  + {key_}: {dict2[key_]}\n"
-#     return result_str
-def build_diff(dict_diff):
-    # надо закончить
-    return dict_diff
+from gendiff.string_diff import build_str_diff
 
 
 def format_bool_dict(data_dict):
@@ -61,7 +46,7 @@ def parser_data(data1, data2):
     format_data2 = format_bool_dict(data2)
     dict_diff = compare_dict(format_data1, format_data2)
     print(dict_diff)
-    str_dict_diff = build_diff(dict_diff)
+    str_dict_diff = build_str_diff(dict_diff)
     return str_dict_diff
 
 # added(новый),
