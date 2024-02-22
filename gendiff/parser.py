@@ -7,28 +7,17 @@ UNCHANGED = "unchanged"
 NESTED = "nested"
 
 
-def format_bool_dict(data_dict):
-    if isinstance(data_dict, bool):
-        return str(data_dict).lower()
-    if data_dict is None:
-        return "null"
-    return data_dict
-
-
 def go_all_keys(dict1, dict2, all_keys):
     dict_diff = {}
     for key_ in all_keys:
         if key_ in dict1 and key_ not in dict2:
-            dict_diff[key_] = (REMOVED, format_bool_dict(dict1[key_]))
+            dict_diff[key_] = (REMOVED, dict1[key_])
         if key_ not in dict1 and key_ in dict2:
-            dict_diff[key_] = (ADDED, format_bool_dict(dict2[key_]))
+            dict_diff[key_] = (ADDED, dict2[key_])
         if key_ in dict1 and key_ in dict2 and dict1[key_] == dict2[key_]:
-            dict_diff[key_] = (UNCHANGED, format_bool_dict(dict1[key_]))
+            dict_diff[key_] = (UNCHANGED, dict1[key_])
         if key_ in dict1 and key_ in dict2 and dict1[key_] != dict2[key_]:
-            dict_diff[key_] = (CHANGED,
-                               format_bool_dict(dict1[key_]),
-                               format_bool_dict(dict2[key_])
-                               )
+            dict_diff[key_] = (CHANGED, dict1[key_], dict2[key_])
     return dict_diff
 
 
@@ -57,6 +46,7 @@ def parser_data(data1, data2):
     dict_diff = compare_dict(data1, data2)
     print(dict_diff)
     str_dict_diff = build_str_diff(dict_diff)
+    # str_dict_diff = stringify(dict_diff)
     return str_dict_diff
 
 # added(новый),
@@ -106,3 +96,26 @@ def parser_data(data1, data2):
 #         else:
 #             new_dict[key_] = (UNCHANGED, format_bool_dict(dict1[key_]))
 #     return new_dict
+
+# def go_all_keys(dict1, dict2, all_keys):
+#     dict_diff = {}
+#     for key_ in all_keys:
+#         if key_ in dict1 and key_ not in dict2:
+#             dict_diff[key_] = (REMOVED, format_bool_dict(dict1[key_]))
+#         if key_ not in dict1 and key_ in dict2:
+#             dict_diff[key_] = (ADDED, format_bool_dict(dict2[key_]))
+#         if key_ in dict1 and key_ in dict2 and dict1[key_] == dict2[key_]:
+#             dict_diff[key_] = (UNCHANGED, format_bool_dict(dict1[key_]))
+#         if key_ in dict1 and key_ in dict2 and dict1[key_] != dict2[key_]:
+#             dict_diff[key_] = (CHANGED,
+#                                format_bool_dict(dict1[key_]),
+#                                format_bool_dict(dict2[key_])
+#                                )
+#     return dict_diff
+
+# def format_bool_dict(data_dict):
+#     if isinstance(data_dict, bool):
+#         return str(data_dict).lower()
+#     if data_dict is None:
+#         return "null"
+#     return data_dict

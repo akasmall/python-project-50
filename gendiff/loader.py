@@ -3,6 +3,15 @@ import json
 import yaml
 
 
+def convert_json_to_str(dct):
+    for key, value in dct.items():
+        if value is None:
+            dct[key] = "null"
+        elif isinstance(value, bool):
+            dct[key] = str(value).lower()
+    return dct
+
+
 def download_file(file1, file2):
     try:
         with (
@@ -14,10 +23,11 @@ def download_file(file1, file2):
             _, file_ext_1 = os.path.splitext(file1)
             _, file_ext_2 = os.path.splitext(file2)
             if file_ext_1 == ".json" and file_ext_2 == ".json":
-                file1_txt = json.load(f1)
-                file2_txt = json.load(f2)
+                file1_txt = json.load(f1, object_hook=convert_json_to_str)
+                file2_txt = json.load(f2, object_hook=convert_json_to_str)
             elif (file_ext_1 == ".yml" and file_ext_2 == ".yml") or \
                     (file_ext_1 == ".yaml" and file_ext_2 == ".yaml"):
+                # file1_txt = yaml.safe_load(f1)
                 file1_txt = yaml.safe_load(f1)
                 file2_txt = yaml.safe_load(f2)
             else:

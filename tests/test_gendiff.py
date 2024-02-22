@@ -12,8 +12,8 @@ from gendiff.generate_diff import generate_diff
             './tests/fixtures/diff_f1_f2.txt',
         ),
         (
-            "./tests/fixtures/file1.yml",
-            "./tests/fixtures/file2.yml",
+            './tests/fixtures/file1.yml',
+            './tests/fixtures/file2.yml',
             './tests/fixtures/diff_f1_f2.txt',
         ),
     ]
