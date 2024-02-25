@@ -3,6 +3,14 @@ import json
 import yaml
 
 
+def none_constructor(loader, node):
+    return loader.construct_scalar(node)
+
+
+def bool_constructor(loader, node):
+    return loader.construct_scalar(node)
+
+
 def convert_json_to_str(dct):
     for key, value in dct.items():
         if value is None:
@@ -13,13 +21,14 @@ def convert_json_to_str(dct):
 
 
 def download_file(file1, file2):
+    yaml.SafeLoader.add_constructor('tag:yaml.org,2002:null', none_constructor)
+    yaml.SafeLoader.add_constructor('tag:yaml.org,2002:bool', bool_constructor)
+
     try:
         with (
             open(file1, "r", encoding="utf-8") as f1,
             open(file2, "r", encoding="utf-8") as f2,
         ):
-            # type_file1 = os.path.splitext(file1)[1]
-            # type_file2 = os.path.splitext(file2)[1]
             _, file_ext_1 = os.path.splitext(file1)
             _, file_ext_2 = os.path.splitext(file2)
             if file_ext_1 == ".json" and file_ext_2 == ".json":

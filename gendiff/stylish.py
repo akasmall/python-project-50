@@ -44,9 +44,12 @@ def stringify(value, replacer=SPACE, spaces_count=1):
         lines = []
         for key, val in current_value.items():
             if not isinstance(val, tuple):
-                deep_indent = current_indent + SPACE
-                lines.append(f'{deep_indent}{key}: {val}')
-                continue
+                if isinstance(val, dict):
+                    val = ("unchanged", val)
+                else:
+                    deep_indent = current_indent + SPACE
+                    lines.append(f'{deep_indent}{key}: {val}')
+                    continue
             if val[0] == "changed":
                 deep_indent = current_indent + MINUS
                 lines.append(

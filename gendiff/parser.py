@@ -1,4 +1,4 @@
-from gendiff.string_diff import build_str_diff
+from gendiff.stylish import build_str_diff
 
 ADDED = "added"
 REMOVED = "removed"
