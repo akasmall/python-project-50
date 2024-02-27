@@ -1,6 +1,7 @@
 # Сначала определите фикстуру в файле, например, в файле conftest.py:
 import pytest
 from gendiff.generate_diff import generate_diff
+from gendiff.loader import convert_json_to_str
 
 
 @pytest.mark.parametrize(
@@ -25,3 +26,11 @@ def test_gendiff(file1, file2, file3):
         file3 = f3.read()
     res = generate_diff(file1, file2)
     assert res == file3
+
+
+def test_convert_json():
+    dct = {
+        'key1': None,
+        'key2': True
+    }
+    assert convert_json_to_str(dct) == {'key1': 'null', 'key2': 'true'}
