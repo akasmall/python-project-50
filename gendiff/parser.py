@@ -1,4 +1,4 @@
-from gendiff.stylish import build_str_diff
+from gendiff.stylish import stringify
 
 ADDED = "added"
 REMOVED = "removed"
@@ -44,9 +44,7 @@ def compare_dict(dict1, dict2):
 
 def parser_data(data1, data2):
     dict_diff = compare_dict(data1, data2)
-    print(dict_diff)
-    str_dict_diff = build_str_diff(dict_diff)
-    # str_dict_diff = stringify(dict_diff)
+    str_dict_diff = stringify(dict_diff)
     return str_dict_diff
 
 # added(новый),
