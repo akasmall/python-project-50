@@ -1,4 +1,4 @@
-from gendiff.stylish import stringify
+# from gendiff.stylish import stringify
 
 ADDED = "added"
 REMOVED = "removed"
@@ -21,8 +21,8 @@ def go_all_keys(dict1, dict2, all_keys):
     return dict_diff
 
 
-# def compare_dict(dict1, dict2, res_diff={}):
-def compare_dict(dict1, dict2):
+# def compare_dict(dict1, dict2):
+def parser_data(dict1, dict2):
     dict_diff = {}
     all_keys = dict1.keys() | dict2.keys()
     dict_diff = go_all_keys(dict1, dict2, all_keys)
@@ -33,7 +33,7 @@ def compare_dict(dict1, dict2):
         if (dict_diff[i][0] == CHANGED
                 and isinstance(dict_diff[i][1], dict)
                 and isinstance(dict_diff[i][2], dict)):
-            res_diff[i] = (NESTED, dict(compare_dict(
+            res_diff[i] = (NESTED, dict(parser_data(
                 dict_diff[i][1],
                 dict_diff[i][2]
             )))
@@ -42,10 +42,10 @@ def compare_dict(dict1, dict2):
     return res_diff
 
 
-def parser_data(data1, data2):
-    dict_diff = compare_dict(data1, data2)
-    str_dict_diff = stringify(dict_diff)
-    return str_dict_diff
+# def parser_data(data1, data2):
+#     dict_diff = compare_dict(data1, data2)
+#     str_dict_diff = stringify(dict_diff)
+#     return str_dict_diff
 
 # added(новый),
 # removed(удаленный),

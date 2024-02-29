@@ -60,10 +60,10 @@ def stringify(dict_diff, replacer=SPACE, spaces_count=1):
     return iter_(dict_diff, 0)
 
 
-def build_str_diff(dict_diff):
-    result_str = stringify(dict_diff)
-    print(result_str)
-    return result_str
+# def build_str_diff(dict_diff):
+#     result_str = stringify(dict_diff)
+#     print(result_str)
+#     return result_str
 
 
 # def stringify(value, replacer=SPACE, spaces_count=1):

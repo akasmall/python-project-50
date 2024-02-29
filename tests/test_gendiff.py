@@ -2,6 +2,7 @@
 import pytest
 from gendiff.generate_diff import generate_diff
 from gendiff.loader import convert_json_to_str
+# from gendiff.loader import none_constructor, bool_constructor
 
 
 @pytest.mark.parametrize(
@@ -34,3 +35,14 @@ def test_convert_json():
         'key2': True
     }
     assert convert_json_to_str(dct) == {'key1': 'null', 'key2': 'true'}
+
+
+# def test_convert_yaml():
+#     node = ScalarNode(tag='tag:yaml.org,2002:bool', value='true')
+#     # dct_bool = {'key2': True}
+#     assert none_constructor('tag:yaml.org,2002:null', None) == 'null'
+#     assert bool_constructor('tag:yaml.org,2002:bool', True) == 'true'
+#     # assert none_constructor('tag:yaml.org,2002:null',
+#     #                         dct_none) == {'key1': 'null'}
+#     # assert bool_constructor('tag:yaml.org,2002:bool',
+#     #                         dct_bool) == {'key2': 'true'}
