@@ -13,13 +13,14 @@ def generate_diff(file1, file2, formatter='stylish'):
 
     file1_txt, file2_txt = download_file(file1, file2)
     dict_diff = parser_data(file1_txt, file2_txt)
-    if formatter != 'stylish':
-        print("Неизвестный форматтер!!!")
-        return False
-    else:
+    # print(f"Проверка -f что передали {formatter}")
+    if formatter == 'stylish':
         result = stringify(dict_diff)
         print(result)
         return result
+    else:
+        print("Неизвестный форматтер!!!")
+        return False
 
 
 # временно для теста
