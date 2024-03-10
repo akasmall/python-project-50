@@ -15,19 +15,17 @@ def generate_diff(file1, file2, formatter='stylish'):
 
     file1_txt, file2_txt = download_file(file1, file2)
     dict_diff = parser_data(file1_txt, file2_txt)
-    print(dict_diff)
+    # print(dict_diff)
     if formatter == 'stylish':
         result = stringify_stylish(dict_diff)
-        print(result)
-        return result
+        # print(result)
     elif formatter == 'plain':
         result = stringify_plain(dict_diff)
-        for i in result:
-            print(i)
-        return result
+        print(result)
     else:
         print("Неизвестный форматтер!!!")
         return False
+    return result
 
 
 # временно для теста

@@ -77,7 +77,7 @@ def stringify_plain(dict_diff, path='', deep=0):
             result_app = looking_conditions(dict_diff)
             # is_value_none()
             if result_app is not None:
-                path = f"'{path}'{result_app}"
+                path = f"Property '{path}'{result_app}"
                 # path = f'{path}{result_app}'
                 result.append(path)
             else:
@@ -93,7 +93,11 @@ def stringify_plain(dict_diff, path='', deep=0):
                     # value, f"'{path}.{key}'", deep + 1))
                     value, path + '.' + key, deep + 1))
     # result.append = result[len(result) - 1][1:]
-    return result
+    # print(result)
+    if deep == 0:
+        return '\n'.join(result)
+    else:
+        return result
 
 
 # def get_leaf_paths(data, path=''):
