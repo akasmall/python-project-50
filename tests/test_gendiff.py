@@ -6,27 +6,33 @@ from gendiff.loader import convert_json_to_str
 
 
 @pytest.mark.parametrize(
-    "file1, file2, file3",
+    "file1, file2, file3, file4",
     [
         (
             './tests/fixtures/file1.json',
             './tests/fixtures/file2.json',
-            './tests/fixtures/diff_f1_f2.txt',
+            './tests/fixtures/diff_stylish.txt',
+            './tests/fixtures/diff_plain.txt',
         ),
         (
             './tests/fixtures/file1.yml',
             './tests/fixtures/file2.yml',
-            './tests/fixtures/diff_f1_f2.txt',
+            './tests/fixtures/diff_stylish.txt',
+            './tests/fixtures/diff_plain.txt',
         ),
     ]
 )
-def test_gendiff(file1, file2, file3):
+def test_gendiff(file1, file2, file3, file4):
     with (
         open(file3, "r", encoding="utf-8") as f3,
+        open(file4, "r", encoding="utf-8") as f4,
     ):
         file3 = f3.read()
-    res = generate_diff(file1, file2)
-    assert res == file3
+        file4 = f4.read()
+    # res = generate_diff(file1, file2, "stylish")
+    # assert res == file3
+    res = generate_diff(file1, file2, "plain")
+    assert res == file4
 
 
 def test_convert_json():

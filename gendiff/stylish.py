@@ -43,7 +43,7 @@ def looking_conditions(iter_, *args):
     return False
 
 
-def stringify(dict_diff, replacer=SPACE, spaces_count=1):
+def stringify_stylish(dict_diff, replacer=SPACE, spaces_count=1):
 
     def iter_(current_value, depth):
         if not isinstance(current_value, dict):
@@ -58,43 +58,3 @@ def stringify(dict_diff, replacer=SPACE, spaces_count=1):
         return '\n'.join(result)
 
     return iter_(dict_diff, 0)
-
-
-# def build_str_diff(dict_diff):
-#     result_str = stringify(dict_diff)
-#     print(result_str)
-#     return result_str
-
-
-# def stringify(value, replacer=SPACE, spaces_count=1):
-
-#     def iter_(current_value, depth):
-#         if not isinstance(current_value, dict):
-#             return str(current_value)
-#         deep_size = depth + spaces_count
-#         curr_indent = replacer * depth
-#         lines = []
-#         for key, val in current_value.items():
-#             if not isinstance(val, tuple):
-#                 if isinstance(val, dict):
-#                     val = ("unchanged", val)
-#                 else:
-#                     deep_indent = curr_indent + SPACE
-#                     lines.append(f'{deep_indent}{key}: {val}')
-#                     continue
-#             if val[0] == "changed":
-#                 deep_indent = curr_indent + MINUS
-#                 lines.append(
-#                     f'{deep_indent}{key}: {iter_(val[1], deep_size)}')
-#                 deep_indent = curr_indent + PLUS
-#                 lines.append(
-#                     f'{deep_indent}{key}: {iter_(val[2], deep_size)}')
-#             else:
-#                 deep_indent = curr_indent + getting_padding(val)
-#                 lines.append(
-#                     f'{deep_indent}{key}: {iter_(val[1], deep_size)}')
-#         result = itertools.chain("{", lines, [curr_indent + "}"])
-#         return '\n'.join(result)
-#         # return lines
-
-#     return iter_(value, 0)
