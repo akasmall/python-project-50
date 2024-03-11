@@ -29,10 +29,10 @@ def test_gendiff(file1, file2, file3, file4):
     ):
         file3 = f3.read()
         file4 = f4.read()
-    # res = generate_diff(file1, file2, "stylish")
-    # assert res == file3
-    res = generate_diff(file1, file2, "plain")
-    assert res == file4
+    result = generate_diff(file1, file2, "stylish")
+    assert result == file3
+    result = generate_diff(file1, file2, "plain")
+    assert result == file4
 
 
 def test_convert_json():

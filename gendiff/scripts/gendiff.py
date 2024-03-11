@@ -23,16 +23,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-# import sys
-    # get_diff(sys.argv[1], sys.argv[2])
-    # last_index = -1
-    # if sys.argv[3] is not None and sys.argv[3][:2] == '-f':
-    #     last_index = sys.argv[3].rfind(" ")
-
-    # if last_index == -1:
-    #     formatter = sys.argv[3][last_index + 1:]
-    #     generate_diff(sys.argv[1], sys.argv[2], formatter)
-    # else:
-    #     print("пошел в generate_diff")
-    #     generate_diff(sys.argv[1], sys.argv[2])

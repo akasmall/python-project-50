@@ -28,7 +28,7 @@
 
 ## Вычислитель отличий
 <a id = "project-50"></a>
-[![asciicast](https://asciinema.org/a/JeSpIzWNLtOTfMYFRQYcDGnQA.svg)](https://asciinema.org/a/JeSpIzWNLtOTfMYFRQYcDGnQA)
+[![asciicast](https://asciinema.org/a/Ge2hr97gcRHANimapptsglpQU.svg)](https://asciinema.org/a/Ge2hr97gcRHANimapptsglpQU)
 
 
 [Вверх](#anchor)
