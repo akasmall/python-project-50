@@ -13,10 +13,8 @@ def bool_constructor(loader, node):
 
 def convert_json_to_str(dct):
     for key, value in dct.items():
-        if value is None:
-            dct[key] = "null"
-        elif isinstance(value, bool):
-            dct[key] = str(value).lower()
+        if value is None or isinstance(value, bool):
+            dct[key] = json.dumps(value)
     return dct
 
 
@@ -44,3 +42,12 @@ def download_file(file1, file2):
         return (file1_txt, file2_txt)
     except IOError as e:
         print('Не удалось открыть файл', e)
+
+
+# def convert_json_to_str(dct):
+#     for key, value in dct.items():
+#         if value is None:
+#             dct[key] = "null"
+#         elif isinstance(value, bool):
+#             dct[key] = str(value).lower()
+#     return dct
