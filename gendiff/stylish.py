@@ -1,5 +1,4 @@
 import itertools
-# from gendiff.parser import ADDED, CHANGED, REMOVED, UNCHANGED
 
 ADDED = "added"
 REMOVED = "removed"

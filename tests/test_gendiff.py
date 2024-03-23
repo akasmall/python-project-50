@@ -34,10 +34,6 @@ def test_gendiff(file1, file2, file_stylish, file_plain, file_json):
     assert generate_diff(file1, file2, "stylish") == file_stylish
     assert generate_diff(file1, file2, "plain") == file_plain
     assert generate_diff(file1, file2, "json") == file_json
-    # result = generate_diff(file1, file2, "stylish")
-    # assert result == file_stylish
-    # result = generate_diff(file1, file2, "plain")
-    # assert result == file_plain
 
 
 def test_convert_json():

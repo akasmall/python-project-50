@@ -19,7 +19,6 @@ def go_all_keys(dict1, dict2, all_keys):
     return dict_diff
 
 
-# def compare_dict(dict1, dict2):
 def parser_data(dict1, dict2):
     dict_diff = {}
     all_keys = dict1.keys() | dict2.keys()

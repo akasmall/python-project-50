@@ -34,7 +34,6 @@ def download_file(file1, file2):
                 file2_txt = json.load(f2, object_hook=convert_json_to_str)
             elif (file_ext_1 == ".yml" and file_ext_2 == ".yml") or \
                     (file_ext_1 == ".yaml" and file_ext_2 == ".yaml"):
-                # file1_txt = yaml.safe_load(f1)
                 file1_txt = yaml.safe_load(f1)
                 file2_txt = yaml.safe_load(f2)
             else:
@@ -42,12 +41,3 @@ def download_file(file1, file2):
         return (file1_txt, file2_txt)
     except IOError as e:
         print('Не удалось открыть файл', e)
-
-
-# def convert_json_to_str(dct):
-#     for key, value in dct.items():
-#         if value is None:
-#             dct[key] = "null"
-#         elif isinstance(value, bool):
-#             dct[key] = str(value).lower()
-#     return dct
