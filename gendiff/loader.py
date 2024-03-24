@@ -18,26 +18,21 @@ def convert_json_to_str(dct):
     return dct
 
 
-def download_file(file1, file2):
+def download_file(file):
     yaml.SafeLoader.add_constructor('tag:yaml.org,2002:null', none_constructor)
     yaml.SafeLoader.add_constructor('tag:yaml.org,2002:bool', bool_constructor)
 
     try:
         with (
-            open(file1, "r", encoding="utf-8") as f1,
-            open(file2, "r", encoding="utf-8") as f2,
+            open(file, "r", encoding="utf-8") as f,
         ):
-            _, file_ext_1 = os.path.splitext(file1)
-            _, file_ext_2 = os.path.splitext(file2)
-            if file_ext_1 == ".json" and file_ext_2 == ".json":
-                file1_txt = json.load(f1, object_hook=convert_json_to_str)
-                file2_txt = json.load(f2, object_hook=convert_json_to_str)
-            elif (file_ext_1 == ".yml" and file_ext_2 == ".yml") or \
-                    (file_ext_1 == ".yaml" and file_ext_2 == ".yaml"):
-                file1_txt = yaml.safe_load(f1)
-                file2_txt = yaml.safe_load(f2)
+            _, file_ext = os.path.splitext(file)
+            if file_ext == ".json":
+                file_txt = json.load(f, object_hook=convert_json_to_str)
+            elif (file_ext == ".yml") or (file_ext == ".yaml"):
+                file_txt = yaml.safe_load(f)
             else:
                 raise Exception('Неподдерживаемый формат файла')
-        return (file1_txt, file2_txt)
+        return file_txt
     except IOError as e:
         print('Не удалось открыть файл', e)

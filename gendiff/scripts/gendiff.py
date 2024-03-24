@@ -16,9 +16,13 @@ def main():
     second_file = args_.second_file
 
     if args_.format:
-        generate_diff(first_file, second_file, args_.format)
+        result = generate_diff(first_file, second_file, args_.format)
     else:
-        generate_diff(first_file, second_file)
+        result = generate_diff(first_file, second_file)
+    if not result:
+        print("Неизвестный форматтер!!!")
+    else:
+        print(result)
 
 
 if __name__ == '__main__':
