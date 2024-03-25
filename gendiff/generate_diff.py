@@ -22,12 +22,12 @@ def generate_diff(file1, file2, formatter='stylish'):
 
 # временно для теста
 # для теста ++++
-formatter_ = 'stylish'
-# formatter_ = 'plain'
-# formatter_ = 'json'
-file_1 = './tests/fixtures/file1.json'
-file_2 = './tests/fixtures/file2.json'
+FORMATTER_ = 'stylish'
+# FORMATTER_ = 'plain'
+# FORMATTER_ = 'json'
+FILE_1 = './tests/fixtures/file1.json'
+FILE_2 = './tests/fixtures/file2.json'
 # file1 = './tests/fixtures/file1.yml'
 # file2 = './tests/fixtures/file2.yml'
 # для теста ----
-generate_diff(file_1, file_2, formatter_)
+generate_diff(FILE_1, FILE_2, FORMATTER_)
