@@ -15,8 +15,9 @@ def generate_diff(file1, file2, formatter='stylish'):
         result = stringify_plain(dict_diff)
     elif formatter == 'json':
         result = stringify_json(dict_diff)
-    else:
-        return False
+    # else:
+    #     return 'Неизвестный форматтер!!!'
+        # raise ValueError('Неизвестный форматтер!!!')
     return result
 
 
