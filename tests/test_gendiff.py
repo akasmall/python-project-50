@@ -4,36 +4,52 @@ from gendiff.loader import convert_json_to_str
 
 
 @pytest.mark.parametrize(
-    "file1, file2, file_stylish, file_plain, file_json",
+    "file1, file2, formatter, file_sample",
     [
         (
             './tests/fixtures/file1.json',
             './tests/fixtures/file2.json',
+            'stylish',
             './tests/fixtures/diff_stylish.txt',
+        ),
+        (
+            './tests/fixtures/file1.json',
+            './tests/fixtures/file2.json',
+            'plain',
             './tests/fixtures/diff_plain.txt',
+        ),
+        (
+            './tests/fixtures/file1.json',
+            './tests/fixtures/file2.json',
+            'json',
             './tests/fixtures/diff_json.txt',
         ),
         (
             './tests/fixtures/file1.yml',
             './tests/fixtures/file2.yml',
+            'stylish',
             './tests/fixtures/diff_stylish.txt',
+        ),
+        (
+            './tests/fixtures/file1.yml',
+            './tests/fixtures/file2.yml',
+            'plain',
             './tests/fixtures/diff_plain.txt',
+        ),
+        (
+            './tests/fixtures/file1.yml',
+            './tests/fixtures/file2.yml',
+            'json',
             './tests/fixtures/diff_json.txt',
         ),
     ]
 )
-def test_gendiff(file1, file2, file_stylish, file_plain, file_json):
+def test_gendiff(file1, file2, formatter, file_sample):
     with (
-        open(file_stylish, "r", encoding="utf-8") as f_s,
-        open(file_plain, "r", encoding="utf-8") as f_p,
-        open(file_json, "r", encoding="utf-8") as f_j,
+        open(file_sample, "r", encoding="utf-8") as f_f
     ):
-        file_stylish = f_s.read()
-        file_plain = f_p.read()
-        file_json = f_j.read()
-    assert generate_diff(file1, file2, "stylish") == file_stylish
-    assert generate_diff(file1, file2, "plain") == file_plain
-    assert generate_diff(file1, file2, "json") == file_json
+        data_sample = f_f.read()
+    assert generate_diff(file1, file2, formatter) == data_sample
 
 
 def test_convert_json():
