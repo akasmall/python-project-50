@@ -1,4 +1,4 @@
-from gendiff.parser import parser_data
+from gendiff.parser_ import parser_data
 from gendiff.loader import download_file
 from gendiff.stylish import stringify_stylish
 from gendiff.plain import stringify_plain
