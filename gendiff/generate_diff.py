@@ -5,10 +5,10 @@ from gendiff.plain import stringify_plain
 from gendiff.json import stringify_json
 
 
-def generate_diff(file1, file2, formatter='stylish'):
-    file1_txt = download_file(file1)
-    file2_txt = download_file(file2)
-    dict_diff = parser_data(file1_txt, file2_txt)
+def generate_diff(data1, data2, formatter='stylish'):
+    data1_txt = download_file(data1)
+    data2_txt = download_file(data2)
+    dict_diff = parser_data(data1_txt, data2_txt)
     if formatter == 'stylish':
         result = stringify_stylish(dict_diff)
     elif formatter == 'plain':
@@ -16,8 +16,8 @@ def generate_diff(file1, file2, formatter='stylish'):
     elif formatter == 'json':
         result = stringify_json(dict_diff)
     # else:
-    #     return 'Неизвестный форматтер!!!'
-        # raise ValueError('Неизвестный форматтер!!!')
+    #     # return 'Неизвестный формат!!!'
+    #     raise ValueError(f"{formatter} - неизвестный формат!")
     return result
 
 
@@ -26,9 +26,9 @@ def generate_diff(file1, file2, formatter='stylish'):
 # FORMATTER_ = 'stylish'
 # # FORMATTER_ = 'plain'
 # # FORMATTER_ = 'json'
-# FILE_1 = './tests/fixtures/file1.json'
-# FILE_2 = './tests/fixtures/file2.json'
-# # file1 = './tests/fixtures/file1.yml'
-# # file2 = './tests/fixtures/file2.yml'
+# data_1 = './tests/fixtures/data1.json'
+# data_2 = './tests/fixtures/data2.json'
+# # data1 = './tests/fixtures/data1.yml'
+# # data2 = './tests/fixtures/data2.yml'
 # # для теста ----
-# generate_diff(FILE_1, FILE_2, FORMATTER_)
+# generate_diff(data_1, data_2, FORMATTER_)
