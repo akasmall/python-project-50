@@ -19,7 +19,7 @@ def go_all_keys(dict1, dict2, all_keys):
     return dict_diff
 
 
-def parser_data(dict1, dict2):
+def parser_(dict1, dict2):
     dict_diff = {}
     all_keys = dict1.keys() | dict2.keys()
     dict_diff = go_all_keys(dict1, dict2, all_keys)
@@ -30,7 +30,7 @@ def parser_data(dict1, dict2):
         if (dict_diff[i][0] == CHANGED
                 and isinstance(dict_diff[i][1], dict)
                 and isinstance(dict_diff[i][2], dict)):
-            res_diff[i] = (NESTED, dict(parser_data(
+            res_diff[i] = (NESTED, dict(parser_(
                 dict_diff[i][1],
                 dict_diff[i][2]
             )))

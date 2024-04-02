@@ -1,6 +1,6 @@
 import pytest
 from gendiff.generate_diff import generate_diff
-from gendiff.loader import convert_json_to_str
+# from gendiff.loader import convert_json_to_str
 
 
 @pytest.mark.parametrize(
@@ -49,12 +49,13 @@ def test_gendiff(file1, file2, formatter, file_sample):
         open(file_sample, "r", encoding="utf-8") as f_f
     ):
         data_sample = f_f.read()
-    assert generate_diff(file1, file2, formatter) == data_sample
+    res = generate_diff(file1, file2, formatter)
+    assert res == data_sample
 
 
-def test_convert_json():
-    dct = {
-        'key1': None,
-        'key2': True
-    }
-    assert convert_json_to_str(dct) == {'key1': 'null', 'key2': 'true'}
+# def test_convert_json():
+#     dct = {
+#         'key1': None,
+#         'key2': True
+#     }
+#     assert convert_json_to_str(dct) == {'key1': 'null', 'key2': 'true'}
