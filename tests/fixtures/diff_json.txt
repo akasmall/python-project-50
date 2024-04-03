@@ -4,7 +4,7 @@
         {
             "follow": [
                 "added",
-                "false"
+                false
             ],
             "setting1": [
                 "unchanged",
@@ -16,8 +16,8 @@
             ],
             "setting3": [
                 "changed",
-                "true",
-                "null"
+                true,
+                null
             ],
             "setting4": [
                 "added",
@@ -60,7 +60,7 @@
             "baz": [
                 "changed",
                 "bas",
-                "bars"
+                0
             ],
             "foo": [
                 "unchanged",

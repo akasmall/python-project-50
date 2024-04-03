@@ -1,4 +1,5 @@
 import itertools
+import json
 
 ADDED = "added"
 REMOVED = "removed"
@@ -46,7 +47,12 @@ def stringify_stylish(dict_diff, replacer=SPACE, spaces_count=1):
 
     def iter_(current_value, depth):
         if not isinstance(current_value, dict):
-            return str(current_value)
+            if isinstance(current_value, bool) or current_value is None:
+                processed_value = json.dumps(current_value)
+            else:
+                processed_value = current_value
+            return processed_value
+            # return str(current_value)
         deep_size = depth + spaces_count
         curr_indent = replacer * depth
         lines = []

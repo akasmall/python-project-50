@@ -31,18 +31,18 @@ def generate_diff(data1, data2, formatter='stylish'):
         result = stringify_plain(dict_diff)
     elif formatter == F_JSON:
         result = stringify_json(dict_diff)
-    print(result)   # для теста
     return result
 
 
 # временно для теста
 # для теста ++++
-FORMATTER_ = 'stylish'
+# FORMATTER_ = 'stylish'
 # FORMATTER_ = 'plain'
 # FORMATTER_ = 'json'
 # DATA_1 = './tests/fixtures/file1.json'
 # DATA_2 = './tests/fixtures/file2.json'
-DATA_1 = './tests/fixtures/file1.yml'
-DATA_2 = './tests/fixtures/file2.yml'
+# DATA_1 = './tests/fixtures/file1.yml'
+# DATA_2 = './tests/fixtures/file2.yml'
+# res = generate_diff(DATA_1, DATA_2, FORMATTER_)
+# print(res)
 # для теста ----
-generate_diff(DATA_1, DATA_2, FORMATTER_)

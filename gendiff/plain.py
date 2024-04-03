@@ -1,3 +1,5 @@
+import json
+
 ADDED = "added"
 REMOVED = "removed"
 CHANGED = "changed"
@@ -6,10 +8,11 @@ UNCHANGED = "unchanged"
 
 
 def get_bool_null_str(value_):
-    if value_ == 'true' or value_ == 'false' or value_ == 'null':
-        return value_
+    if isinstance(value_, (bool, int, float)) or value_ is None:
+        result = json.dumps(value_)
     else:
-        return f"'{value_}'"
+        result = json.dumps(str(value_))
+    return result
 
 
 def line_for_changed(tiple_diff):
