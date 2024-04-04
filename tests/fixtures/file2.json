@@ -17,7 +17,7 @@
   },
   "group1": {
     "foo": "bar",
-    "baz": 0,
+    "baz": "bars",
     "nest": "str"
   },
   "group3": {

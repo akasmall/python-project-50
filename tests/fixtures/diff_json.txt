@@ -60,7 +60,7 @@
             "baz": [
                 "changed",
                 "bas",
-                0
+                "bars"
             ],
             "foo": [
                 "unchanged",
