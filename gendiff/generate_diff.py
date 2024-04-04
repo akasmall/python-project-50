@@ -2,7 +2,6 @@ import os
 from gendiff.parser import parse
 from gendiff.parser_ import parser_
 from gendiff.loader import receiving_data
-# from gendiff.loader import download_file
 from gendiff.stylish import stringify_stylish
 from gendiff.plain import stringify_plain
 from gendiff.json import stringify_json
@@ -10,10 +9,6 @@ from gendiff.json import stringify_json
 STYLISH = 'stylish'
 F_PLAIN = 'plain'
 F_JSON = 'json'
-
-# def get_file_type(data_):
-#     extension = os.path.splitext(data_)
-#     return extension[1:]
 
 
 def generate_diff(data1, data2, formatter='stylish'):
