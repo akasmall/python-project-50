@@ -10,6 +10,8 @@ UNCHANGED = "unchanged"
 def get_bool_null_str(value_):
     if isinstance(value_, bool) or value_ is None:
         result = json.dumps(value_)
+    elif isinstance(value_, (int, float)):
+        result = f"\'{str(value_)}\'"
     else:
         result = f"\'{value_}\'"
     return result
