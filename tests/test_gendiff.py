@@ -45,17 +45,7 @@ from gendiff.generate_diff import generate_diff
     ]
 )
 def test_gendiff(file1, file2, formatter, file_sample):
-    with (
-        open(file_sample, "r", encoding="utf-8") as f_f
-    ):
+    with open(file_sample, "r", encoding="utf-8") as f_f:
         data_sample = f_f.read()
     res = generate_diff(file1, file2, formatter)
     assert res == data_sample
-
-
-# def test_convert_json():
-#     dct = {
-#         'key1': None,
-#         'key2': True
-#     }
-#     assert convert_json_to_str(dct) == {'key1': 'null', 'key2': 'true'}
