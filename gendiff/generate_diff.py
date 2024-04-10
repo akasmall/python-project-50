@@ -1,10 +1,10 @@
 import os
 from gendiff.parser import parse
-from gendiff.parser_ import parser_
+from gendiff.builder import get_diff
 from gendiff.loader import receiving_data
-from gendiff.stylish import stringify_stylish
-from gendiff.plain import stringify_plain
-from gendiff.json import stringify_json
+from gendiff.formats.stylish import formatting_stylish
+from gendiff.formats.plain import formatting_plain
+from gendiff.formats.json import formatting_json
 
 STYLISH = 'stylish'
 F_PLAIN = 'plain'
@@ -19,13 +19,13 @@ def generate_diff(data1, data2, formatter='stylish'):
     extension = extension_with_dot[1:]
     parsed_data1 = parse(data1_txt, extension)
     parsed_data2 = parse(data2_txt, extension)
-    dict_diff = parser_(parsed_data1, parsed_data2)
+    dict_diff = get_diff(parsed_data1, parsed_data2)
     if formatter == STYLISH:
-        result = stringify_stylish(dict_diff)
+        result = formatting_stylish(dict_diff)
     elif formatter == F_PLAIN:
-        result = stringify_plain(dict_diff)
+        result = formatting_plain(dict_diff)
     elif formatter == F_JSON:
-        result = stringify_json(dict_diff)
+        result = formatting_json(dict_diff)
     return result
 
 

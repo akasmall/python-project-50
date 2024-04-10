@@ -43,7 +43,7 @@ def looking_conditions(iter_, *args):
     return False
 
 
-def stringify_stylish(dict_diff, replacer=SPACE, spaces_count=1):
+def formatting_stylish(dict_diff, replacer=SPACE, spaces_count=1):
 
     def iter_(current_value, depth):
         if not isinstance(current_value, dict):

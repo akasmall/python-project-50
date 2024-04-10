@@ -17,7 +17,7 @@ def get_bool_null_str(value_):
     return result
 
 
-def line_for_changed(tiple_diff):
+def get_change_str(tiple_diff):
     if isinstance(tiple_diff[1], dict):
         res_bool_null = get_bool_null_str(tiple_diff[2])
         result = f' was updated. From [complex value] to {res_bool_null}'
@@ -45,18 +45,17 @@ def looking_conditions(tiple_diff):
     elif tiple_diff[0] == REMOVED:
         result = ' was removed'
     elif tiple_diff[0] == CHANGED:
-        result = line_for_changed(tiple_diff)
+        result = get_change_str(tiple_diff)
     else:
         return result
     return result
 
 
-def get_line_for_nested(*args):
+def get_nested_str(*args):
     dict_diff, result, path, deep = args[0]
     if dict_diff[0] == NESTED:
         for key, value in dict_diff[1].items():
-            result.extend(stringify_plain(
-                value, f"{path}.{key}", deep + 1))
+            result.extend(formatting_plain(value, f"{path}.{key}", deep + 1))
     else:
         result_app = looking_conditions(dict_diff)
         if result_app is not None:
@@ -67,19 +66,18 @@ def get_line_for_nested(*args):
     return result
 
 
-def stringify_plain(dict_diff, path='', deep=0):
+def formatting_plain(dict_diff, path='', deep=0):
     result = []
     if isinstance(dict_diff, tuple):
         list_value = dict_diff, result, path, deep
-        result = get_line_for_nested(list_value)
+        result = get_nested_str(list_value)
 
     elif isinstance(dict_diff, dict):
         for key, value in dict_diff.items():
             if deep == 0:
-                result.extend(stringify_plain(
-                    value, path + key, deep + 1))
+                result.extend(formatting_plain(value, path + key, deep + 1))
             else:
-                result.extend(stringify_plain(
+                result.extend(formatting_plain(
                     value, path + '.' + key, deep + 1))
     if deep == 0:
         return '\n'.join(result)

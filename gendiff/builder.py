@@ -5,7 +5,7 @@ UNCHANGED = "unchanged"
 NESTED = "nested"
 
 
-def go_all_keys(dict1, dict2, all_keys):
+def get_all_keys(dict1, dict2, all_keys):
     dict_diff = {}
     for key_ in all_keys:
         if key_ in dict1 and key_ not in dict2:
@@ -19,10 +19,10 @@ def go_all_keys(dict1, dict2, all_keys):
     return dict_diff
 
 
-def parser_(dict1, dict2):
+def get_diff(dict1, dict2):
     dict_diff = {}
     all_keys = dict1.keys() | dict2.keys()
-    dict_diff = go_all_keys(dict1, dict2, all_keys)
+    dict_diff = get_all_keys(dict1, dict2, all_keys)
 
     dict_diff = {k: dict_diff[k] for k in sorted(dict_diff)}
     res_diff = {}
@@ -30,7 +30,7 @@ def parser_(dict1, dict2):
         if (dict_diff[i][0] == CHANGED
                 and isinstance(dict_diff[i][1], dict)
                 and isinstance(dict_diff[i][2], dict)):
-            res_diff[i] = (NESTED, dict(parser_(
+            res_diff[i] = (NESTED, dict(get_diff(
                 dict_diff[i][1],
                 dict_diff[i][2]
             )))

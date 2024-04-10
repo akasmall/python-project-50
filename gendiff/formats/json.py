@@ -10,6 +10,6 @@ def custom_encoder(obj):
         f'Object of type {type(obj).__name__} is not JSON serializable')
 
 
-def stringify_json(dict_diff):
+def formatting_json(dict_diff):
     res = json.dumps(dict_diff, indent=4, default=custom_encoder)
     return res
