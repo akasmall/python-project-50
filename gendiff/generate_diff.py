@@ -4,7 +4,7 @@ from gendiff.builder import get_diff
 from gendiff.loader import receiving_data
 from gendiff.formats.stylish import formatting_stylish
 from gendiff.formats.plain import formatting_plain
-from gendiff.formats.json import formatting_json
+from gendiff.formats.json_ import formatting_json
 
 STYLISH = 'stylish'
 F_PLAIN = 'plain'

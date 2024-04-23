@@ -5,35 +5,20 @@ UNCHANGED = "unchanged"
 NESTED = "nested"
 
 
-def get_all_keys(dict1, dict2, all_keys):
-    dict_diff = {}
-    for key_ in all_keys:
-        if key_ in dict1 and key_ not in dict2:
-            dict_diff[key_] = (REMOVED, dict1[key_])
-        if key_ not in dict1 and key_ in dict2:
-            dict_diff[key_] = (ADDED, dict2[key_])
-        if key_ in dict1 and key_ in dict2 and dict1[key_] == dict2[key_]:
-            dict_diff[key_] = (UNCHANGED, dict1[key_])
-        if key_ in dict1 and key_ in dict2 and dict1[key_] != dict2[key_]:
-            dict_diff[key_] = (CHANGED, dict1[key_], dict2[key_])
-    return dict_diff
-
-
-def get_diff(dict1, dict2):
+def get_diff(dict1, dict2):  # noqa C901
     dict_diff = {}
     all_keys = dict1.keys() | dict2.keys()
-    dict_diff = get_all_keys(dict1, dict2, all_keys)
-
-    dict_diff = {k: dict_diff[k] for k in sorted(dict_diff)}
-    res_diff = {}
-    for i in dict_diff:
-        if (dict_diff[i][0] == CHANGED
-                and isinstance(dict_diff[i][1], dict)
-                and isinstance(dict_diff[i][2], dict)):
-            res_diff[i] = (NESTED, dict(get_diff(
-                dict_diff[i][1],
-                dict_diff[i][2]
-            )))
-        else:
-            res_diff[i] = dict_diff[i]
-    return res_diff
+    all_keys_sort = sorted(all_keys)
+    for i in all_keys_sort:
+        if i in dict1 and i not in dict2:
+            dict_diff[i] = (REMOVED, dict1[i])
+        if i not in dict1 and i in dict2:
+            dict_diff[i] = (ADDED, dict2[i])
+        if i in dict1 and i in dict2 and dict1[i] == dict2[i]:
+            dict_diff[i] = (UNCHANGED, dict1[i])
+        if i in dict1 and i in dict2 and dict1[i] != dict2[i]:
+            if (isinstance(dict1[i], dict) and isinstance(dict2[i], dict)):
+                dict_diff[i] = (NESTED, dict(get_diff(dict1[i], dict2[i])))
+            else:
+                dict_diff[i] = (CHANGED, dict1[i], dict2[i])
+    return dict_diff
