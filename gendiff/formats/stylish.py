@@ -31,7 +31,7 @@ def converting_values(val_, depth):
         lines_dict = []
         for key, val in val_.items():
             result_val = converting_values(val, depth + 1)
-            lines_dict.append(f'{SPACE*depth}{key}: {result_val}' + '\n')
+            lines_dict.append(f'{SPACE * depth}{key}: {result_val}' + '\n')
         return '{\n' + ("").join(lines_dict) + (SPACE * (depth - 1)) + '}'
     if isinstance(val_, bool) or val_ is None:
         return json.dumps(val_)
