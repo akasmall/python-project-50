@@ -4,7 +4,7 @@ from gendiff.generate_diff import generate_diff
 
 
 @pytest.mark.parametrize(
-    "file1, file2, formatter, file_sample",
+    "file1, file2, formatter, file_result",
     [
         (
             './tests/fixtures/file1.json',
@@ -44,8 +44,8 @@ from gendiff.generate_diff import generate_diff
         ),
     ]
 )
-def test_gendiff(file1, file2, formatter, file_sample):
-    with open(file_sample, "r", encoding="utf-8") as f_f:
+def test_gendiff(file1, file2, formatter, file_result):
+    with open(file_result, "r", encoding="utf-8") as f_f:
         data_sample = f_f.read()
 
     assert generate_diff(file1, file2, formatter) == data_sample
