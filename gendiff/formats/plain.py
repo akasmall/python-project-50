@@ -38,7 +38,7 @@ def add_parent(lines_list, parent_key):
     return new_list
 
 
-def converting_values(val_):
+def convert_values(val_):
     if isinstance(val_, dict):
         return "[complex value]"
     if isinstance(val_, str):
@@ -48,35 +48,35 @@ def converting_values(val_):
     return val_
 
 
-def converting_vertice(val_):
+def convert_vertice(val_):
     if val_[0] is ADDED:
-        result_ver = converting_values(val_[1])
+        result_ver = convert_values(val_[1])
         return f" was added with value: {result_ver}"
     if val_[0] is REMOVED:
-        result_ver = converting_values(val_[1])
+        result_ver = convert_values(val_[1])
         return " was removed"
     if val_[0] is UNCHANGED:
-        result_ver = converting_values(val_[1])
+        result_ver = convert_values(val_[1])
         return None
     if val_[0] is CHANGED:
-        result_val1 = converting_values(val_[1])
-        result_val2 = converting_values(val_[2])
+        result_val1 = convert_values(val_[1])
+        result_val2 = convert_values(val_[2])
         return f" was updated. From {result_val1} to {result_val2}"
     return f'{result_ver}'
 
 
-def formatting_plain(dict_diff, key_parent='', depth=0):  # noqa C901
+def format_plain(dict_diff, key_parent='', depth=0):  # noqa C901
     lines = []
     for key, val in dict_diff.items():
         result = ""
         if val[0] is NESTED:
-            result = formatting_plain(val[1], key, depth + 1)
+            result = format_plain(val[1], key, depth + 1)
             if key_parent != '':
                 lines += add_parent(result, key_parent)
             else:
                 lines.append(result)
         else:
-            result = converting_vertice(val)
+            result = convert_vertice(val)
             if result is None:
                 continue
             if key_parent == '':
