@@ -27,17 +27,3 @@ def generate_diff(data1, data2, formatter='stylish'):
     elif formatter == F_JSON:
         result = format_json(dict_diff)
     return result
-
-
-# временно для теста
-# для теста ++++
-# FORMATTER_ = 'stylish'
-# FORMATTER_ = 'plain'
-# FORMATTER_ = 'json'
-# DATA_1 = './tests/fixtures/file1.json'
-# DATA_2 = './tests/fixtures/file2.json'
-# DATA_1 = './tests/fixtures/file1.yml'
-# DATA_2 = './tests/fixtures/file2.yml'
-# res = generate_diff(DATA_1, DATA_2, FORMATTER_)
-# print(res)
-# для теста ----
