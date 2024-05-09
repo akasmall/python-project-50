@@ -53,6 +53,13 @@ def convert_vertice(key_, val_, depth):
         result_2 = convert_values(val_[2], depth_values + 1)
         return f'{SPACE * depth}{MINUS}{key_}: {result_1}\n'\
             f'{SPACE * depth}{PLUS}{key_}: {result_2}'
+    if val_[0] is NESTED:
+        result = format_stylish(val_[1], depth + 1)
+        result.insert(0, SPACE + SPACE * depth + key_ + ': {')
+        result.append(SPACE + SPACE * depth + '}')
+        return result
+    # else:
+    #     return convert_vertice(key_, val_, depth)
     return f'{SPACE * depth}{result_ver}'
 
 
@@ -60,12 +67,13 @@ def format_stylish(dict_diff, depth=0):
     lines = []
     for key, val in dict_diff.items():
         result = ""
-        if val[0] is NESTED:
-            result = format_stylish(val[1], depth + 1)
-            result.insert(0, SPACE + SPACE * depth + key + ': {')
-            result.append(SPACE + SPACE * depth + '}')
-        else:
-            result = convert_vertice(key, val, depth)
+        # if val[0] is NESTED:
+        #     result = format_stylish(val[1], depth + 1)
+        #     result.insert(0, SPACE + SPACE * depth + key + ': {')
+        #     result.append(SPACE + SPACE * depth + '}')
+        # else:
+        #     result = convert_vertice(key, val, depth)
+        result = convert_vertice(key, val, depth)
         lines.append(result)
         lines = flatten(lines)
     if depth == 0:
