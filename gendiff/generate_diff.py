@@ -20,6 +20,7 @@ def generate_diff(data1, data2, formatter='stylish'):
     parsed_data1 = parse(data1_txt, extension)
     parsed_data2 = parse(data2_txt, extension)
     dict_diff = get_diff(parsed_data1, parsed_data2)
+    print(dict_diff)
     if formatter == STYLISH:
         result = format_stylish(dict_diff)
     elif formatter == F_PLAIN:
@@ -32,12 +33,12 @@ def generate_diff(data1, data2, formatter='stylish'):
 # временно для теста
 # для теста ++++
 # FORMATTER_ = 'stylish'
-# FORMATTER_ = 'plain'
+FORMATTER_ = 'plain'
 # FORMATTER_ = 'json'
-# DATA_1 = './tests/fixtures/file1.json'
-# DATA_2 = './tests/fixtures/file2.json'
+DATA_1 = './tests/fixtures/file1.json'
+DATA_2 = './tests/fixtures/file2.json'
 # DATA_1 = './tests/fixtures/file1.yml'
 # DATA_2 = './tests/fixtures/file2.yml'
-# res = generate_diff(DATA_1, DATA_2, FORMATTER_)
-# print(res)
+res = generate_diff(DATA_1, DATA_2, FORMATTER_)
+print(res)
 # для теста ----
